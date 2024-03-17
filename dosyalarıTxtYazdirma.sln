@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dosyalarıTxtYazdirma", "dosyalarıTxtYazdirma\dosyalarıTxtYazdirma.csproj", "{49D34CF3-E5A1-4690-AA58-1A7F08923355}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49D34CF3-E5A1-4690-AA58-1A7F08923355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D34CF3-E5A1-4690-AA58-1A7F08923355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D34CF3-E5A1-4690-AA58-1A7F08923355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D34CF3-E5A1-4690-AA58-1A7F08923355}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C184A497-BEB8-4EC9-BC8C-3B6A7865E298}
+	EndGlobalSection
+EndGlobal
