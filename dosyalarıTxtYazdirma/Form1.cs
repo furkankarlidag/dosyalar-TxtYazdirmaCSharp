@@ -9,28 +9,28 @@ namespace dosyalarıTxtYazdirma
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            // Form yüklendiğinde, dosya gezgini açılacak
+            
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            // Dosya gezgini ayarları
-            openFileDialog1.InitialDirectory = "c:\\"; // Başlangıç dizini
-            openFileDialog1.Filter = "C# Dosyaları (*.cs)|*.cs|CSHTML Dosyaları (*.cshtml)|*.cshtml|Tüm Dosyalar (*.*)|*.*"; // Dosya filtresi
-            openFileDialog1.Multiselect = true; // Çoklu dosya seçimine izin ver
+            
+            openFileDialog1.InitialDirectory = "c:\\"; 
+            openFileDialog1.Filter = "C# Dosyaları (*.cs)|*.cs|CSHTML Dosyaları (*.cshtml)|*.cshtml|Tüm Dosyalar (*.*)|*.*"; 
+            openFileDialog1.Multiselect = true; 
 
-            // Dosya gezginiyle dosya seçildiğinde gerçekleşecek olay
+          
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                // Seçilen dosyaların içeriklerini toplamak için bir dize oluştur
+              
                 string[] fileContents = new string[openFileDialog1.FileNames.Length];
 
                 for (int i = 0; i < openFileDialog1.FileNames.Length; i++)
                 {
                     string selectedFile = openFileDialog1.FileNames[i];
 
-                    // Seçilen dosyanın uzantısını kontrol et
+                   
                     if (selectedFile.EndsWith(".cs") || selectedFile.EndsWith(".cshtml") || selectedFile.EndsWith(".html"))
                     {
-                        // Dosyanın içeriğini al
+                        
                         fileContents[i] = System.IO.File.ReadAllText(selectedFile);
                     }
                     else
@@ -40,18 +40,31 @@ namespace dosyalarıTxtYazdirma
                     }
                 }
 
-                // Dosya içeriklerini birleştirerek tek bir metin oluştur
-                string combinedContent = string.Join(Environment.NewLine + " " + Environment.NewLine, fileContents);
+                try
+                {
+                    
+                    string combinedContent = string.Join(Environment.NewLine + " " + Environment.NewLine, fileContents);
 
-                // Dosyayı proje dizininde bir dosyaya yaz
-                string fileName = "kodlarinTamami.txt";
-                string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                   
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-                // Dosya varsa üzerine yaz, yoksa yeni dosya oluştur
-                File.AppendAllText(outputPath, Environment.NewLine + " " + Environment.NewLine + combinedContent);
+                   
+                    string fileName = "kodlarinTamami.txt";
+                    string outputPath = Path.Combine(desktopPath, fileName);
 
-                MessageBox.Show($"Seçilen dosyaların içerikleri başarıyla '{fileName}' adlı bir metin dosyasına yazıldı.\nDosya yolu: {outputPath}");
-                this.label2.Text = "Dosyaya yazdırıldı: " + outputPath;
+                    File.AppendAllText(outputPath, Environment.NewLine + " " + Environment.NewLine + combinedContent);
+
+                    MessageBox.Show($"Seçilen dosyaların içerikleri başarıyla '{fileName}' adlı bir metin dosyasına yazıldı.\nDosya yolu: {outputPath}");
+                    this.label2.Text = "Dosyaya yazdırıldı: " + outputPath;
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    MessageBox.Show("Dosyaya yazma izniniz yok. Lütfen uygulamayı yönetici olarak çalıştırmayı deneyin veya farklı bir konum seçin.\n\n" + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Bir hata oluştu: " + ex.Message);
+                }
             }
         }
 
